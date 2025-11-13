@@ -1,0 +1,23 @@
+$primary-color:#195A00;
+$second-color:#ffffff;
+.col{
+    min-height: 100%;
+}
+.col-img,.col-form{padding: 0;}
+.sign-form{
+    background-color: #F0F4EC;
+    padding: 3rem;
+    height: 100%;
+    .overview{
+        padding-bottom: 2rem;
+        .sign-title{
+            font-size: x-large;
+            color: $primary-color;
+            font-weight: bold;
+        }
+    }
+    .btn{
+    background-color: $primary-color;
+    color: $second-color;
+}
+}

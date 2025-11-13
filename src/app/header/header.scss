@@ -1,0 +1,23 @@
+$primary-color:#195A00;
+$second-color:#ffffff;
+.btn{
+    background-color: $primary-color;
+    color: $second-color;
+    margin-right: 0.5em;
+    padding: 0.3em 1em;
+    border-radius: 40px;
+}
+.navbar{
+    .container-fluid{width: 100%;
+        .center{
+            a{
+               cursor: pointer;
+               text-decoration: none;
+               margin:0 1em ;
+               color: #000;
+            }
+            a:hover{color: $primary-color;}
+        }
+
+    }
+}

@@ -1,0 +1,51 @@
+
+<div class="container-fluid h-70">
+<div class="row">
+    <div class="col col-img">
+        <img src="assets/signup.png" alt="" class="img-fluid px-3">
+    </div>
+    <div class="col col-form">
+        <div class="sign-form">
+        <div class="title text-center">
+        <img src="assets/sign.png" alt="" class="">
+    </div>
+    <div class="overview">
+        <div class="sign-title">Login</div>
+    </div>
+    <div class="">
+        <form (submit)="loginData(loginForm)" [formGroup]="loginForm">
+       
+            <input type="email" formControlName="email" class="form-control mb-2" placeholder="Email">
+            
+            @if (loginForm.get('email')?.errors&&loginForm.get('email')?.touched) {
+                <div>
+                    @if(loginForm.get('email')?.getError('required')){
+                        <p class="alert py-2 alert-danger">Email is Required</p>
+                    }
+                    @if(loginForm.get('email')?.getError('email')){
+                        <p class="alert py-2 alert-danger">Invalid email format</p>
+                    }
+                </div>
+            }
+            
+            <input type="password" formControlName="password" class="form-control mb-2" placeholder="Password">
+            
+            @if (loginForm.get('password')?.errors&&loginForm.get('password')?.touched) {
+                <div>
+                    @if(loginForm.get('password')?.getError('required')){
+                        <p class="alert py-2 alert-danger">Password is Required</p>
+                    }
+                    @if(loginForm.get('password')?.getError('minLength')){
+                        <p class="alert py-2 alert-danger">Minimum Password is 4 digits </p>
+                    }
+                </div>
+            }
+            <button class="btn btn-primary w-100" type="submit">
+                Login
+            </button>
+        </form>
+    </div>
+    </div>
+    </div>
+</div>
+</div>

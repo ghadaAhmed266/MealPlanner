@@ -1,0 +1,101 @@
+
+<div class="container-fluid h-70">
+<div class="row">
+    <div class="col col-img">
+        <img src="assets/signup.png" alt="" class="img-fluid px-3">
+    </div>
+    <div class="col col-form">
+        <div class="sign-form">
+        <div class="title text-center">
+        <img src="assets/sign.png" alt="" class="">
+    </div>
+    <div class="overview">
+        <div class="sign-title">Sign Up</div>
+        <div>Please, fill in this form to sign up</div>
+    </div>
+    <div class="">
+        <form (submit)="registerData(registerForm)" [formGroup]="registerForm">
+        <div class="row">
+            <div class="col">
+            <input type="text" formControlName="first_name" class="form-control mb-2" placeholder="First name">
+                @if (registerForm.get('first_name')?.errors&&registerForm.get('first_name')?.touched) {
+                    <div>
+                        @if(registerForm.get('first_name')?.getError('required')){
+                            <p class="alert py-2 alert-danger">First Name is Required</p>
+                        }
+                        @if(registerForm.get('first_name')?.hasError('minlength')){
+                            <p class="alert py-2 alert-danger">Minimum length is 4 letter</p>
+                        }
+                        @if(registerForm.get('first_name')?.hasError('maxlength')){
+                            <p class="alert py-2 alert-danger">max length is 15 letter</p>
+                        }
+                    </div>
+                }
+
+            </div>
+            <div class="col">
+                <input type="text" formControlName="last_name" class="form-control mb-2" placeholder="Last name">
+                
+                @if (registerForm.get('last_name')?.errors&&registerForm.get('last_name')?.touched) {
+                    <div>
+                        @if(registerForm.get('last_name')?.getError('required')){
+                            <p class="alert py-2 alert-danger">Last Name is Required</p>
+                        }
+                        @if(registerForm.get('last_name')?.getError('minlength')){
+                            <p class="alert py-2 alert-danger">Minimum length is 4 letter</p>
+                        }
+                        @if(registerForm.get('last_name')?.getError('maxlength')){
+                            <p class="alert py-2 alert-danger">max length is 15 letter</p>
+                        }
+                    </div>
+                } 
+
+            </div>
+        </div>
+            <input type="email" formControlName="email" class="form-control mb-2" placeholder="Email">
+            
+            @if (registerForm.get('email')?.errors&&registerForm.get('email')?.touched) {
+                <div>
+                    @if(registerForm.get('email')?.getError('required')){
+                        <p class="alert py-2 alert-danger">Email is Required</p>
+                    }
+                    @if(registerForm.get('email')?.getError('email')){
+                        <p class="alert py-2 alert-danger">Invalid email format</p>
+                    }
+                </div>
+            }
+            
+            <input type="password" formControlName="password" class="form-control mb-2" placeholder="Password">
+            
+            @if (registerForm.get('password')?.errors&&registerForm.get('password')?.touched) {
+                <div>
+                    @if(registerForm.get('password')?.getError('required')){
+                        <p class="alert py-2 alert-danger">Password is Required</p>
+                    }
+                    @if(registerForm.get('password')?.getError('minLength')){
+                        <p class="alert py-2 alert-danger">Minimum Password is 4 digits </p>
+                    }
+                </div>
+            }
+            <input type="password" formControlName="confirmPassword" class="form-control mb-2" placeholder="Confirm Password">
+            
+            @if (registerForm.get('confirmPassword')?.touched) {
+                <div>
+                    @if(registerForm.get('confirmPassword')?.getError('required')){
+                        <p class="alert py-2 alert-danger">Confirm Password is Required</p>
+                    }
+                    @if(passwordMismatch){
+                        <p class="alert py-2 alert-danger">Passwords do not match</p>
+                    }
+                </div>
+            }
+            
+            <button class="btn btn-primary w-100" type="submit" [disabled]="registerForm.invalid">
+                Sign Up
+            </button>
+        </form>
+    </div>
+    </div>
+    </div>
+</div>
+</div>
