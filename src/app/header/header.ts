@@ -1,34 +1,35 @@
 import { afterNextRender, Component, OnInit } from '@angular/core';
-import { RouterLink } from "@angular/router";
+import { Route, Router, RouterLink ,RouterLinkActive} from "@angular/router";
 import { AuthService } from '../authService';
 import {UserData} from '../user-data'
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-header',
-  imports: [RouterLink],
+  imports: [RouterLink,RouterLinkActive],
   templateUrl: './header.html',
   styleUrl: './header.scss'
 })
 export class Header implements OnInit{
 
-  constructor(private _auth:AuthService){}
+  constructor(private authService:AuthService,private _router:Router){}
 
   islogin:boolean=false;
-  userName:string="User Name";
+  userName: string | null = null;
+  private sub: Subscription | undefined;
 
-  ngOnInit(): void {
-    /*this._auth.userData.subscribe({
-      next:()=>{
-        if(this._auth.userData.getValue()!=null)
-        {this.islogin=true;
-          this.userName=JSON.stringify( this._auth.userData.getValue());
-        }
-        else{
-          this.islogin=false;
-        }
-      }})*/
+  ngOnInit(): void { 
+    this.sub = this.authService.userProfile$.subscribe(user => {
+      this.userName = user ? user['firstName'] : null;
+      this.islogin=(this.userName!=null);
+    });
+  }
+
+  ngOnDestroy() {
+    this.sub?.unsubscribe();
   }
   logout(){
-    this._auth.logout();
+    this.authService.logout();
+    this._router.navigate(['/login']);
   }
 }

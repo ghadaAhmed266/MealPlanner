@@ -1,0 +1,9 @@
+
+$primary-color:#195A00;
+$second-color:#ffffff;
+.btn{
+    background-color: $primary-color;
+    color: $second-color;
+    padding: 0.5em 2em;
+    border-radius: 40px;
+}

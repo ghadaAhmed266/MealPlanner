@@ -34,21 +34,21 @@ export class Register implements OnInit{
   registerData(registerval:FormGroup){
     this.isloading=true;
     if(registerval.valid){
-     let user:UserData={email:registerval.value.email,password:registerval.value.password};
-     this._auth.signup(user);
-     this._route.navigate(['/login']);
-    /*.subscribe({
-      next:(response)=>{
-        if(response.message==='success')
-        {
-          this.isloading=false;
-          this._route.navigate(['/login']);
-        }
-        else
-        {}
-        this.isloading=false;
-      }
-    })*/
+     let user:UserData={
+      firstName:registerval.value.first_name,
+      lastName:registerval.value.last_name,
+      email:registerval.value.email,
+      password:registerval.value.password
+     };
+     this._auth.signup(user).then(uid => {
+      console.log("User UID:", uid);
+     this._route.navigate(['/home']);
+      alert("Your account has been created!");
+    })
+    .catch(err => {
+      console.log(err);
+      alert(err.message);
+    });
   }
   }
 }

@@ -29,7 +29,7 @@ export class Login {
   loginData(data:FormGroup){
     this.isloading=true;
     if(data.valid){
-     let user:UserData={email:data.value.email,password:data.value.password};
+     let user:UserData=data.value;
      this._auth.login(user);
      this._router.navigate(['/home']);
 

@@ -16,7 +16,8 @@ $second-color:#ffffff;
                margin:0 1em ;
                color: #000;
             }
-            a:hover{color: $primary-color;}
+            a:hover,a.active{color: $primary-color;}
+            
         }
 
     }

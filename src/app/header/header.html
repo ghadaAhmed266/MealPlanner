@@ -1,21 +1,23 @@
 <nav class="navbar">
     <div class="container-fluid d-flex p-4 m-0 justify-content-between">
         <div class="left">
-            <img src="assets/title.png" class="img-fluid" alt="">
+            <img src="assets/title.png" class="img-fluid w-75" alt="">
         </div>
-        <div class="center d-flex">
-            <a routerLink="home">Home</a>
-            <a routerLink="about">About Us</a>
-            <a routerLink="blog">Blog</a>
-            <a routerLink="contact" >Contact Us</a>
-            <a routerLink="faq">FAQ</a>
+        <div class="center d-md-flex d-none">
+            <a routerLink="home" routerLinkActive="active">Home</a>
+            <a routerLink="about" routerLinkActive="active">About Us</a>
+            <a routerLink="blog" routerLinkActive="active">Blog</a>
+            <a routerLink="contact" routerLinkActive="active">Contact Us</a>
+            <a routerLink="faq" routerLinkActive="active">FAQ</a>
         </div>
         <div class="right d-flex">
             @if(islogin) {
-            <div  class="live">
-                <div class="cart">not</div>
-                <div class="user-info">{{userName}}</div>
-                <div (click)="logout()" class="logout">Logout</div>
+            <div  class="live d-flex ">
+                <div class="cart p-1">
+                    <i class="fa-solid fa-bag-shopping"></i>
+                </div>
+                <div class="user-info p-1">{{userName}}</div>
+                <div (click)="logout()" class="logout p-1">Logout</div>
             </div>
         }
           @if(!islogin) {
