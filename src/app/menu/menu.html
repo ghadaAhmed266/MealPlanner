@@ -1,1 +1,39 @@
 <p>menu works!</p>
+<h2>قائمة الطعام</h2>
+
+<!-- عرض القائمة 
+<ul>
+  <li *ngFor="let item of menuItems$ | async">
+    <img [src]="item.img" alt="{{item.name}}" width="50" />
+    {{ item.name }} - {{ item.time }} - {{ item.price }} جنيه
+
+    <button (click)="updateItem(item.id)">تحديث السعر</button>
+    <button (click)="deleteItem(item.id)">حذف</button>
+  </li>
+</ul>
+-->
+<div class="row">
+    @for (item of menuItems| async;track item.id) {
+     <div class="col-4">
+        <div class="card" style="width: 18rem;">
+            <img [src]="item.img" class="card-img-top" alt="{{item.name}}img">
+            <div class="card-body">
+                <h5 class="card-title">{{ item.name }}</h5>
+                <p class="card-text">$ {{ item.price }}</p>
+                <a href="#" class="btn btn-primary">add to cart</a>
+            </div>
+        </div>
+    </div>
+   } @empty {
+     <div>There are no items.</div>
+   }
+
+</div>
+<!-- إضافة عنصر جديد -->
+<h3>أضف عنصر جديد</h3>
+<input placeholder="الاسم" [(ngModel)]="newItem.name" />
+<input placeholder="الوقت" [(ngModel)]="newItem.time" />
+<input type="number" placeholder="السعر" [(ngModel)]="newItem.price" />
+<input placeholder="رابط الصورة" [(ngModel)]="newItem.img" />
+
+<button (click)="addItem()">أضف</button>

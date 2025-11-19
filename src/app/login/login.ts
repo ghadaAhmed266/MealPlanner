@@ -27,13 +27,12 @@ export class Login {
     
   }
   loginData(data:FormGroup){
+              this._router.navigate(['/home']);
+
     this.isloading=true;
     if(data.valid){
      let user:UserData=data.value;
      this._auth.login(user);
-     this._router.navigate(['/home']);
-
-
     }
     /*this._auth.signin(data.value).subscribe({
       next:(response)=>{

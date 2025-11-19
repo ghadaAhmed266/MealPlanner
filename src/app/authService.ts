@@ -20,7 +20,7 @@ export class AuthService {
       return docData(userDoc);
     })
   );
-  constructor(private auth: Auth,  private fs: Firestore) {
+  constructor(private auth: Auth,  private fs: Firestore,private _router:Router) {
     // متابعة حالة المستخدم
     onAuthStateChanged(this.auth, (user) => {
       this.userIdSubject.next(user ? user.uid : null);
@@ -45,8 +45,9 @@ export class AuthService {
   return uid;
   }
 
-  login(user:UserData) {
-    return signInWithEmailAndPassword(this.auth, user.email, user.password);
+  async login(user:UserData) {
+     await signInWithEmailAndPassword(this.auth, user.email, user.password);
+     this._router.navigate(['/home']);
   }
 
   logout() {

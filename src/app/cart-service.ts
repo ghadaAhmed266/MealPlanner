@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Firestore, doc, setDoc, getDoc, updateDoc } from '@angular/fire/firestore';
+import { Item } from './item';
 
 @Injectable({
   providedIn: 'root',
@@ -27,7 +28,7 @@ export class CartService {
   // ========================
   // CREATE / UPDATE - Save all cart items
   // ========================
-  async saveCart(items: any[]) {
+  async saveCart(items: Item[]) {
     const ref = doc(this.fs, `carts/${this.cartId}`);
     await setDoc(ref, { items });  // overwrite
   }
@@ -35,7 +36,7 @@ export class CartService {
   // ========================
   // ADD item to cart
   // ========================
-  async addItem(item: any) {
+  async addItem(item: Item) {
     let cart = await this.getCart();
 
     const existing = cart.find((c: any) => c.id === item.id);
