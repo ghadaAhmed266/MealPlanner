@@ -6,4 +6,5 @@ export interface Item {
     img:string;
     category:string;
     description?: string;  
+    quantity:number;
 }

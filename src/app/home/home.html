@@ -118,8 +118,9 @@
         <p>Lorem ipsum dolor sit amet consectetur. Urna eu amet laoreet nisl. Amet pellentesque quam lobortis metus et. Consequat at mauris lacus sed blandit purus proin. Nunc lacus vivamus tortor bibendum est habitant ut mattis vivamus.</p>
         </div>
         <div class="menu row">
+            
             @for (itemCard of menuItems| async;track itemCard.id) { 
-                <div class="col-4">
+                <div class="col-4 px-md-2 px-sm-1 px-0">
                 <div class="card">
                 <img [src]="itemCard.img" class="card-img-top" alt="">
                 <div class="card-body text-start">
@@ -142,12 +143,22 @@
         <h4>Testimonials</h4>
         <div  id="carousel-testimonial" class="carousel slide p-5 m-4">
             <ol class="carousel-indicators">
-                <li data-target="#carousel-testimonial" data-slide-to="0" class="active"></li>
-                <li data-target="#carousel-testimonial" data-slide-to="1"></li>
+                <li data-target="#carousel-testimonial" data-slide-to="0"></li>
+                <li data-target="#carousel-testimonial" data-slide-to="1" class="active"></li>
                 <li data-target="#carousel-testimonial" data-slide-to="2"></li>
             </ol>
             <div class="carousel-inner">
-                <div class="carousel-item active">
+                <div class="carousel-item">
+                     <div class="profile d-flex align-items-center justify-content-center">
+                        <img src="assets/profile.png" alt="" class="img-fluid pe-3">
+                        <div class="details text-start">
+                            <div class="name">William</div>
+                            <div class="job">Co </div>
+                        </div>
+                    </div>
+                    <p class="p-2">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis dignissimos ipsum nesciunt accusantium alias natus non doloribus molestias, repellat, aspernatur excepturi? Ipsa reprehenderit odit saepe magnam repellendus sed hic sit?</p>
+                </div>
+                 <div class="carousel-item active">
                      <div class="profile d-flex align-items-end justify-content-center">
                         <img src="assets/profile.png" alt="" class="img-fluid b-50">
                         <div class="details text-start">
@@ -159,25 +170,22 @@
                 </div>
                  <div class="carousel-item">
                      <div class="profile d-flex align-items-end justify-content-center">
-                        <img src="assets/profile.png" alt="" class="img-fluid b-50">
+                        <img src="assets/profile.png" alt="" class="img-fluid pe-1">
                         <div class="details text-start">
                             <div class="name">William</div>
-                            <div class="job">Co </div>
-                        </div>
-                    </div>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis dignissimos ipsum nesciunt accusantium alias natus non doloribus molestias, repellat, aspernatur excepturi? Ipsa reprehenderit odit saepe magnam repellendus sed hic sit?</p>
-                </div>
-                 <div class="carousel-item">
-                     <div class="profile d-flex align-items-end justify-content-center">
-                        <img src="assets/profile.png" alt="" class="img-fluid p-2">
-                        <div class="details text-start">
-                            <div class="name">William</div>
-                            <div class="job">Co </div>
+                            <div class="job">Co</div>
                         </div>
                     </div>
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis dignissimos ipsum nesciunt accusantium alias natus non doloribus molestias, repellat, aspernatur excepturi? Ipsa reprehenderit odit saepe magnam repellendus sed hic sit?</p>
                 </div>
             </div>
            </div>
+    </div>
+</div>
+
+<div class="learnMore">
+    <div class="d-flex flex-column flex-sm-row ">
+        <P> Baked fresh daily by baker’s with passion.</P>
+        <button class="btn mx-2">Learn more</button>
     </div>
 </div>

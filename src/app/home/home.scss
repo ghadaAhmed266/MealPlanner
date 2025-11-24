@@ -63,10 +63,12 @@ $second-color:#ffffff;
     .menu{
         .col-4{padding: 0;}
         .card{
+            border-radius:  30px 5px 30px 0;
+            overflow: hidden;
             margin: .5rem;     
             border-left: 0;
             box-shadow:5px 5px 5px rgba(0, 0, 0, 0.15);
-            .card-img-top{border-radius: 5px;}
+            .card-img-top{border-radius: 5px;height: 13rem;}
             .card-body{
                 p,h5{padding: 0;margin: 0;}
                 .card-text{font-size: x-small;}
@@ -86,5 +88,104 @@ $second-color:#ffffff;
     h4{color: $second-color;}
     .carousel{
         background-color: $second-color;
+        .details{
+            margin-left: .7rem;
+            .name{font-size: large;}
+            .job{
+                font-size: small;
+                color: #A7A7A7;
+            }
+            
+        }
+        .carousel-indicators {
+            margin-bottom: -2.8rem;
+            li{
+                list-style: none;
+                margin: .5rem;
+                background-color: #B75269;
+                width: 10px;
+                height: 10px;
+                border-radius: 50%;
+                cursor: pointer;
+            }
+            .active{
+                background-color: $second-color;
+            }
+        }
+        p{font-size: small;margin-top: 1rem;}
     }
+}
+
+.learnMore{
+    padding: 2rem;
+    background-image: url('/assets/learn.png');
+    background-size: cover;
+    color: $second-color;
+    p,.btn{margin: 0;}
+    .btn{
+        border-radius: 3px;
+    }
+    p{padding-left: 2rem;}
+}
+
+/* Extra small devices (phones) */
+@media (max-width: 575px) {
+    .story{padding: 0;}
+    .head, .about, .about2 {
+        .content{max-width: 100%;}}
+.py-3,.p-5{padding: 2px!important;}
+.testimonial .carousel .carousel-indicators{
+    margin-bottom: -1.5rem;
+}
+.foods{
+    .menu{
+        .card{
+            .card-img-top{height: 8rem;}
+        }
+    }
+}
+}
+
+/* Small devices (tablet) */
+@media (min-width: 576px) and (max-width: 767px) {
+    .foods{
+    .menu{
+        .card{
+            .card-img-top{height: 9rem;}
+        }
+    }
+}
+}
+
+/* Medium devices (tablet landscape) */
+@media (min-width: 768px) and (max-width: 991px) {
+    .foods{
+    .menu{
+        .card{
+            .card-img-top{height: 10rem;}
+        }
+    }
+}
+}
+
+/* Large devices (laptop) */
+@media (min-width: 992px) and (max-width: 1199px) {
+    .foods{
+    .menu{
+        .card{
+            .card-img-top{height: 12rem;}
+        }
+    }
+}
+}
+
+/* Extra large devices (large desktop) */
+@media (min-width: 1200px) {
+    .foods{
+    .menu{
+        .card{
+            .card-img-top{height: 14rem;}
+        }
+    }
+}
 }

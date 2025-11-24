@@ -4,6 +4,7 @@ import { Firestore, doc, docData, setDoc } from '@angular/fire/firestore';
 import { BehaviorSubject, of, switchMap } from 'rxjs';
 import { UserData } from './user-data';
 import { Router } from '@angular/router';
+import { CartService } from './cart-service';
 
 
 @Injectable({
@@ -13,17 +14,34 @@ export class AuthService {
   
  private userIdSubject = new BehaviorSubject<string | null>(null);
   userId$ = this.userIdSubject.asObservable();
-  userProfile$ = this.userId$.pipe(
-    switchMap(uid => {
-      if (!uid) return of(null);
-      const userDoc = doc(this.fs, `users/${uid}`);
-      return docData(userDoc);
-    })
-  );
-  constructor(private auth: Auth,  private fs: Firestore,private _router:Router) {
-    // متابعة حالة المستخدم
+
+  private cartIdSubject = new BehaviorSubject<string>('guest-cart');
+  cartId$ = this.cartIdSubject.asObservable();
+  // GET USER PROFILE
+ userProfile$ = this.userId$.pipe(
+  switchMap(uid => {
+    if (!uid) return of(null);
+    const userDoc = doc(this.fs, `users/${uid}`);
+    return docData(userDoc);
+  })
+);
+
+
+  constructor(private auth: Auth, private fs: Firestore, private _router: Router) {
     onAuthStateChanged(this.auth, (user) => {
-      this.userIdSubject.next(user ? user.uid : null);
+     if (user) {
+        this.userIdSubject.next(user.uid);
+        this.cartIdSubject.next(user.uid); 
+        localStorage.setItem('uid',user.uid);
+        localStorage.setItem('user', JSON.stringify(user));
+      } else {
+        this.userIdSubject.next(null);
+        this.cartIdSubject.next('guest-cart'); 
+        localStorage.removeItem('uid');
+        localStorage.removeItem('user');
+
+
+      }
     });
   }
 
@@ -32,6 +50,9 @@ export class AuthService {
 
   const uid = userCredential.user.uid;
 
+  localStorage.setItem('uid',uid);
+  localStorage.setItem('user', JSON.stringify(userCredential.user));
+  this.cartIdSubject.next(uid);
   // Save additional user info in Firestore
   const userRef = doc(this.fs, `users/${uid}`);
   await setDoc(userRef, {
@@ -46,11 +67,20 @@ export class AuthService {
   }
 
   async login(user:UserData) {
-     await signInWithEmailAndPassword(this.auth, user.email, user.password);
+     const res = await signInWithEmailAndPassword(this.auth, user.email, user.password);
+     this.cartIdSubject.next(res.user.uid);
+    localStorage.setItem('uid', res.user.uid);
+    localStorage.setItem('user', JSON.stringify(res.user));
      this._router.navigate(['/home']);
+     return res.user.uid;
   }
 
+
   logout() {
+     this.userIdSubject.next(null);
+        this.cartIdSubject.next('guest-cart'); 
+        localStorage.removeItem('uid');
+        localStorage.removeItem('user');
     return signOut(this.auth);
   }
 }

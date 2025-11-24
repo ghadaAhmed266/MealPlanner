@@ -9,6 +9,31 @@ $second-color:#ffffff;
 }
 .navbar{
     .container-fluid{width: 100%;
+        .right{
+            .cart{
+                position: relative;
+                cursor: pointer;
+                i{
+                    color:$primary-color;
+                }
+                .notification{
+                    position: absolute;
+                    top: -.3rem;
+                    right: -.5rem;
+                    width: 15px;
+                    height: 15px;
+                    border-radius: 50%;
+                    background-color: $primary-color;
+                    color: $second-color;
+                    position: absolute;
+                    font-size: x-small;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+
+                }
+            }
+        }
         .center{
             a{
                cursor: pointer;

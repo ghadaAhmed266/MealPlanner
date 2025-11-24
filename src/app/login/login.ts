@@ -4,6 +4,7 @@ import { CommonModule } from "@angular/common";
 import { Router } from '@angular/router';
 import {UserData} from '../user-data';
 import { AuthService } from '../authService';
+import { CartService } from '../cart-service';
 
 
 @Component({
@@ -17,23 +18,26 @@ export class Login {
 
   isloading:boolean=false;
   loginForm:FormGroup=new FormGroup({
-   email:new FormControl(null,[Validators.required,Validators.email]),
-     password:new FormControl(null,[Validators.minLength(4),Validators.required])
+  email:new FormControl(null,[Validators.required,Validators.email]),
+  password:new FormControl(null,[Validators.minLength(4),Validators.required])
     
   });
-  constructor(private _auth:AuthService,private _router:Router){
+  constructor(private _auth:AuthService,private _router:Router,private _cart:CartService){
   }
   ngOnInit(): void {
     
   }
   loginData(data:FormGroup){
-              this._router.navigate(['/home']);
-
     this.isloading=true;
     if(data.valid){
-     let user:UserData=data.value;
-     this._auth.login(user);
-    }
+      
+   
+let user:UserData=data.value;
+    this._auth.login(user).then(uid => {
+  this._cart.setCartId(uid);  
+     // 👈 تحديث cartId بعد login
+}); }
+ 
     /*this._auth.signin(data.value).subscribe({
       next:(response)=>{
         if(response.message==='success')

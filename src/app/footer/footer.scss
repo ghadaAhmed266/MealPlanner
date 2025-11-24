@@ -1,41 +1,17 @@
 $primary-color:#195A00;
 $second-color:#ffffff;
-.footer{
-    background-color: #F0F4EC;
-    .food{
-        .title{
-            font-size: large;
-            font-weight: bold;
-            margin-bottom: 1em;
-            span{color: $primary-color;}
-        }
-        p{font-size: small;}
-        .btn{
+footer{
+    h2{color: #43121D;}
+    p{font-size: x-small;}
+    .btn{
         background-color: $primary-color;
-    }
-    }
-    .contact{
+        color: $second-color;
+        margin-left: 5px;
+        border-radius: 4px;
         font-size: small;
+        padding: 8px 30px;
     }
-    .links{
-        a{
-            padding: .5em;
-            cursor: pointer;        
-            font-size: small;
-
-        }
-    }
-    .insta{
-        max-width: 20%;
-        text-align: start;
-        h6{margin: 0; padding: 0;}
-        .col-6,.col-md-4{
-            padding: .05em;
-        }
-    }
-    
-}
-.copy{
+    .copy{
     background-color: $primary-color;
     color: $second-color;
     padding: 2rem;
@@ -43,8 +19,20 @@ $second-color:#ffffff;
     a{
         color: $second-color;
         text-decoration: none;
-        cursor: pointer;
-        white-space: nowrap;
-    }
-    p{margin: 0;}
+        padding: 1rem;
+        cursor: pointer;    }
+        i{
+            color: $primary-color;
+            background-color: $second-color;
+            border-radius: 50%;
+            padding: 5px;
+            width: 30px;
+            height: 30px;
+            margin: .5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    p{margin: 1rem;}
+}
 }

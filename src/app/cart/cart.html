@@ -1,1 +1,32 @@
-<p>cart works!</p>
+<div class="header d-flex align-items-center justify-content-center">
+   <h3> Cart</h3>
+</div>
+<div class="row">
+    <div class="col-8">
+        <div class="cart">
+            <div class="row">
+            @for (itemCard of menuItems;track itemCard.id) { 
+                <div class="col-6">
+                    <div class="card">
+                        <img [src]="itemCard.img" class="card-img-top" alt="">
+                        <div class="card-body text-start">
+                        <h5 class="card-title">{{itemCard.name}}</h5>
+                        <p class="card-text">{{itemCard.time}}</p>
+                        <p class="price">${{itemCard.price}}</p>
+                        <button class="btn" (click)="addToCart(itemCard)">add to cart</button>
+                    </div>
+                </div>
+            </div>
+            }
+            @empty {
+            <div>There are no items.</div>
+            }
+        </div>
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="menu">
+
+        </div>
+    </div>
+</div>

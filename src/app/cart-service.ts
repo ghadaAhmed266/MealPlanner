@@ -1,6 +1,8 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { Firestore, doc, setDoc, getDoc, updateDoc } from '@angular/fire/firestore';
 import { Item } from './item';
+import { AuthService } from './authService';
+import { BehaviorSubject, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -8,8 +10,21 @@ import { Item } from './item';
 export class CartService {
 
   cartId = 'guest-cart';  // ممكن تغيريها لاحقًا لو هتعملي login
-
-  constructor(private fs: Firestore) {}
+  cartItems=new BehaviorSubject(0);
+  cartItems$ = this.cartItems.asObservable();
+  constructor(private fs: Firestore,private authService: AuthService) {
+    this.authService.cartId$.subscribe(id => {
+    this.cartId = id;
+  });
+  }
+setCartId(uid: string) {
+  this.cartId = uid;
+  this.loadCartItemsCount(); // ← تحميل العدد الحقيقي من Firebase
+}
+async loadCartItemsCount() {
+  const items = await this.getCart(); // ← بتجيب items من Firebase
+  this.cartItems.next(items.length);
+}
 
   // ========================
   // READ - Get Cart
@@ -17,9 +32,11 @@ export class CartService {
   async getCart() {
     const ref = doc(this.fs, `carts/${this.cartId}`);
     const snap = await getDoc(ref);
-
+    
     if (snap.exists()) {
-      return snap.data()['items'] || [];
+      const items=snap.data()['items'] || [];
+      this.cartItems.next(items.length);
+      return items;
     }
 
     return [];
@@ -30,6 +47,7 @@ export class CartService {
   // ========================
   async saveCart(items: Item[]) {
     const ref = doc(this.fs, `carts/${this.cartId}`);
+    this.cartItems.next(items.length);
     await setDoc(ref, { items });  // overwrite
   }
 
@@ -44,7 +62,7 @@ export class CartService {
     if (existing) {
       existing.quantity++;
     } else {
-      cart.push({ ...item, quantity: 1 });
+      cart.push({ item});
     }
 
     await this.saveCart(cart);
@@ -83,6 +101,7 @@ export class CartService {
   // ========================
   async clearCart() {
     const ref = doc(this.fs, `carts/${this.cartId}`);
+    this.cartItems.next(0);
     await setDoc(ref, { items: [] });
   }
 }

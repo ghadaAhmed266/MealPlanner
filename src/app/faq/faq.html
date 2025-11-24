@@ -1,0 +1,26 @@
+<div class="header d-flex align-items-center justify-content-center">
+   <h3> FAQ Page</h3>
+</div>
+<div class="container">
+
+    <div class="row my-4">
+        <div class="col-8">
+            @for (faqitem of faq;track faq.length) { 
+                <h4>{{faqitem.question}}</h4>
+                <p>{{faqitem.answer}}</p>
+            }
+            @empty {
+            <div>There are no items.</div>
+            }
+        </div>
+        <div class="col-4">
+            <h4>Everything You Need To Know</h4>
+            <p>Lorem ipsum dolor sit amet consectetur. Aliquet egestas at lacus cum nullam commodo eget consequat. Nulla mattis cras in velit scelerisque diam sit phasellus. </p>
+            <h4>Customer Support</h4>
+            <p>(+880) 1757044044<br>foodtime@gmail.com</p>
+            <img src="assets/faqimg1.png" alt="" class="img-fluid">
+            <img src="assets/faqimg2.png" alt="" class="img-fluid">
+        </div>
+    </div>
+    
+</div>

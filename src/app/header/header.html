@@ -12,12 +12,15 @@
         </div>
         <div class="right d-flex">
             @if(islogin) {
-            <div  class="live d-flex ">
-                <div class="cart p-1">
-                    <i class="fa-solid fa-bag-shopping"></i>
+            <div  class="live d-flex align-items-center ">
+                <div  routerLink="cart" routerLinkActive="active" class="cart">
+                    <div class="notification">
+                        <div class="cart-items">{{cartitemsCount}}</div>
+                    </div>
+                    <i class="fa-solid fa-cart-shopping"></i>               
                 </div>
-                <div class="user-info p-1">{{userName}}</div>
-                <div (click)="logout()" class="logout p-1">Logout</div>
+                <div class="user-info px-3">{{userName}}</div>
+                <button (click)="logout()" class="btn me-0">Logout</button>
             </div>
         }
           @if(!islogin) {
