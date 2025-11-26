@@ -8,7 +8,9 @@ $second-color:#ffffff;
     border-radius: 40px;
 }
 .navbar{
-    .container-fluid{width: 100%;
+    .container-fluid{
+        width: 100%;
+        flex-wrap: wrap;
         .right{
             .cart{
                 position: relative;
@@ -46,4 +48,18 @@ $second-color:#ffffff;
         }
 
     }
+}
+
+/* الشاشات الصغيرة */
+@media (max-width: 576px) {
+  .box {
+    width: 45%;            /* أو 100% لو عايزة */
+  }
+ .navbar{.container-fluid{
+  .center {
+    order: 3;              /* ينزل تحت */
+    width: 100%;           /* يخليه في النص تلقائيًا */
+    margin-top: 10px;
+    a{margin: 0 .3em;}
+  }}}
 }

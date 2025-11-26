@@ -1,16 +1,16 @@
 <nav class="navbar">
     <div class="container-fluid d-flex p-4 m-0 justify-content-between">
-        <div class="left">
+        <div class="box left">
             <img src="assets/title.png" class="img-fluid w-75" alt="">
         </div>
-        <div class="center d-md-flex d-none">
+        <div class="box center d-flex">
             <a routerLink="home" routerLinkActive="active">Home</a>
             <a routerLink="about" routerLinkActive="active">About Us</a>
             <a routerLink="menu" routerLinkActive="active">Menu</a>
             <a routerLink="contact" routerLinkActive="active">Contact Us</a>
             <a routerLink="faq" routerLinkActive="active">FAQ</a>
         </div>
-        <div class="right d-flex">
+        <div class="box right d-flex">
             @if(islogin) {
             <div  class="live d-flex align-items-center ">
                 <div  routerLink="cart" routerLinkActive="active" class="cart">

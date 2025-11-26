@@ -69,13 +69,19 @@ export class Home implements OnInit {
       this._menuService.addMenuItems(this.items);
     new Swiper('.myProducts', {
       modules: [Navigation],
-      slidesPerView: 3,
+      slidesPerView: 1,
       slidesPerGroup: 1, // 👈 move only one
       spaceBetween: 1,
       navigation: {
         nextEl: '.swiper-button-next',
         prevEl: '.swiper-button-prev',
-      }
+      }, 
+      breakpoints: {
+        480: { slidesPerView: 1.5 },
+        640: { slidesPerView: 2 },
+        768: { slidesPerView: 2.5 },
+        1024: { slidesPerView: 3 }
+      },
     });
   }
   addToCart(item:Item)
