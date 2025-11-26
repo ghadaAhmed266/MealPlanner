@@ -5,6 +5,8 @@ import { MenuService } from '../menu-service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { CartService } from '../cart-service';
+import Swiper from 'swiper';
+import { Navigation } from 'swiper/modules';
 
 @Component({
   selector: 'app-home',
@@ -65,6 +67,16 @@ export class Home implements OnInit {
      })
    if(!haveItems)
       this._menuService.addMenuItems(this.items);
+    new Swiper('.myProducts', {
+      modules: [Navigation],
+      slidesPerView: 3,
+      slidesPerGroup: 1, // 👈 move only one
+      spaceBetween: 1,
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      }
+    });
   }
   addToCart(item:Item)
   {

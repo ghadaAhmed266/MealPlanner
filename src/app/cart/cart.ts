@@ -13,18 +13,33 @@ import { CartService } from '../cart-service';
   styleUrl: './cart.scss',
 })
 export class Cart implements OnInit {
-  menuItems:any=[];
+  menuItems: Observable<any[]> | undefined;
   items:any=[];
 constructor(private _menuService: MenuService,private _cart :CartService) {}
 
   ngOnInit() {
-    this.menuItems = this._cart.getCart();
-     let haveItems:Boolean=false;
-      if(this.menuItems.length>1)
-        haveItems=true;
+
+    this.menuItems =  this._cart.getCartItems();
+    let haveItems:Boolean=false;
+    this.menuItems.subscribe(items=>{
+      if(items.length<=0)
+        haveItems=false;
+    })
   }
   addToCart(item:Item)
   {
     this._cart.addItem(item);
+  }
+  deleteCart(item:Item)
+  {
+    this._cart.removeItem(item.id?item.id:'');
+  }
+  updateQuantity(item:Item,oper:string)
+  {
+    if(oper=="+")
+      item.quantity++;
+    else
+      item.quantity--;
+    this._cart.updateQuantity(item.id?item.id:'',item.quantity)
   }
 }

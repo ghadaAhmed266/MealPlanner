@@ -1,32 +1,24 @@
 <div class="header d-flex align-items-center justify-content-center">
    <h3> Cart</h3>
 </div>
-<div class="row">
-    <div class="col-8">
-        <div class="cart">
-            <div class="row">
-            @for (itemCard of menuItems;track itemCard.id) { 
-                <div class="col-6">
+        <div class="d-flex my-5">
+            @for (itemCard of menuItems|async;track itemCard.item.id) { 
+                <div class="col-4">
                     <div class="card">
-                        <img [src]="itemCard.img" class="card-img-top" alt="">
+                        <img [src]="itemCard.item.img" class="card-img-top" alt="">
                         <div class="card-body text-start">
-                        <h5 class="card-title">{{itemCard.name}}</h5>
-                        <p class="card-text">{{itemCard.time}}</p>
-                        <p class="price">${{itemCard.price}}</p>
-                        <button class="btn" (click)="addToCart(itemCard)">add to cart</button>
+                            <h5 class="card-title">{{itemCard.item.name}}</h5>
+                            <p class="card-text">{{itemCard.item.time}}</p>
+                            <p class="price">Price: ${{itemCard.item.price}}</p>
+                            <p class="price">Quantity: {{itemCard.item.quantity}}</p>
+                            <p class="price">Total Price: ${{itemCard.item.quantity*itemCard.item.price}}</p>
+                            <button class="btn" (click)="updateQuantity(itemCard.item,'+')">+</button><button class="btn" (click)="updateQuantity(itemCard.item,'-')">-</button>
+                            <button class="btn" (click)="deleteCart(itemCard.item)">delete</button>
+                        </div>
                     </div>
                 </div>
-            </div>
             }
             @empty {
             <div>There are no items.</div>
             }
         </div>
-        </div>
-    </div>
-    <div class="col-4">
-        <div class="menu">
-
-        </div>
-    </div>
-</div>

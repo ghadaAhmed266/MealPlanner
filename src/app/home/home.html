@@ -117,23 +117,32 @@
         <h4>Explore Our Foods</h4>
         <p>Lorem ipsum dolor sit amet consectetur. Urna eu amet laoreet nisl. Amet pellentesque quam lobortis metus et. Consequat at mauris lacus sed blandit purus proin. Nunc lacus vivamus tortor bibendum est habitant ut mattis vivamus.</p>
         </div>
-        <div class="menu row">
-            
-            @for (itemCard of menuItems| async;track itemCard.id) { 
-                <div class="col-4 px-md-2 px-sm-1 px-0">
-                <div class="card">
-                <img [src]="itemCard.img" class="card-img-top" alt="">
-                <div class="card-body text-start">
-                    <h5 class="card-title">{{itemCard.name}}</h5>
-                    <p class="card-text">{{itemCard.time}}</p>
-                    <p class="price">${{itemCard.price}}</p>
-                    <button class="btn" (click)="addToCart(itemCard)">add to cart</button>
-                </div></div>
-            </div>
-        }
-        @empty {
-        <div>There are no items.</div>
-        }
+
+        <div class="menu">
+            <div class="swiper myProducts p-2">
+                <div class="swiper-wrapper">
+                    @for (itemCard of menuItems|async;track itemCard.id) { 
+                        <div class="px-md-2 px-sm-1 px-0 swiper-slide">
+                            <div class="card">
+                                <img [src]="itemCard.img" class="card-img-top" alt="">
+                                <div class="card-body text-start">
+                                    <h5 class="card-title">{{itemCard.name}}</h5>
+                                    <p class="card-text">{{itemCard.time}}</p>
+                                    <p class="price">${{itemCard.price}}</p>
+                                    <button class="btn" (click)="addToCart(itemCard)">add to cart</button>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    @empty {
+                    <div>There are no items.</div>
+                    }
+                </div>
+
+                <!-- Arrows -->
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+            </div> 
         </div>
     </div>
 </div>

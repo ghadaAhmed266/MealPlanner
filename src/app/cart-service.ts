@@ -1,8 +1,8 @@
-import { Injectable, OnInit } from '@angular/core';
-import { Firestore, doc, setDoc, getDoc, updateDoc } from '@angular/fire/firestore';
+import { Injectable, OnInit ,runInInjectionContext} from '@angular/core';
+import { Firestore, doc, setDoc, getDoc, updateDoc, docData } from '@angular/fire/firestore';
 import { Item } from './item';
 import { AuthService } from './authService';
-import { BehaviorSubject, Subject } from 'rxjs';
+import { BehaviorSubject, map, Observable, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -29,6 +29,13 @@ async loadCartItemsCount() {
   // ========================
   // READ - Get Cart
   // ========================
+  getCartItems(): Observable<any[]> {
+  const ref = doc(this.fs, `carts/${this.cartId}`);
+
+  return docData(ref).pipe(
+    map((data: any) => data?.items || [])
+  );
+} 
   async getCart() {
     const ref = doc(this.fs, `carts/${this.cartId}`);
     const snap = await getDoc(ref);
@@ -56,15 +63,14 @@ async loadCartItemsCount() {
   // ========================
   async addItem(item: Item) {
     let cart = await this.getCart();
-
-    const existing = cart.find((c: any) => c.id === item.id);
-
+    const existing = cart.find((c: any) => c.item.id === item.id);
     if (existing) {
-      existing.quantity++;
-    } else {
+      existing.item.quantity++;
+    } 
+    else {
+      item.quantity=1;
       cart.push({ item});
     }
-
     await this.saveCart(cart);
   }
 
@@ -74,13 +80,13 @@ async loadCartItemsCount() {
   async updateQuantity(id: string, qty: number) {
     let cart = await this.getCart();
 
-    const item = cart.find((i: any) => i.id === id);
+    const item = cart.find((i: any) => i.item.id === id);
     if (!item) return;
 
-    item.quantity = qty;
+    item.item.quantity = qty;
 
-    if (item.quantity <= 0) {
-      cart = cart.filter((i: any) => i.id !== id);
+    if (item.item.quantity <= 0) {
+      cart = cart.filter((i: any) => i.item.id !== id);
     }
 
     await this.saveCart(cart);
@@ -91,7 +97,7 @@ async loadCartItemsCount() {
   // ========================
   async removeItem(id: string) {
     let cart = await this.getCart();
-    cart = cart.filter((i: any) => i.id !== id);
+    cart = cart.filter((i: any) => i.item.id !== id);
 
     await this.saveCart(cart);
   }
