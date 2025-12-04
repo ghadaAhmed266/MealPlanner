@@ -11,24 +11,24 @@
             <a routerLink="faq" routerLinkActive="active">FAQ</a>
         </div>
         <div class="box right d-flex">
-            @if(islogin) {
-            <div  class="live d-flex align-items-center ">
+            
+            <div  class=" d-flex align-items-center ">
                 <div  routerLink="cart" routerLinkActive="active" class="cart">
                     <div class="notification">
                         <div class="cart-items">{{cartitemsCount}}</div>
                     </div>
                     <i class="fa-solid fa-cart-shopping"></i>               
                 </div>
-                <div class="user-info px-3">{{userName}}</div>
-                <button (click)="logout()" class="btn me-0">Logout</button>
+                @if(islogin) {
+                    <div class="user-info px-3">{{userName}}</div>
+                    <button (click)="logout()" class="btn me-0">Logout</button>
+                }
+                @else{
+                    <button  routerLink="login" class="btn ms-3">Login</button>
+                    <button routerLink="register" class="btn d-none">Register</button>
+                }
             </div>
-        }
-          @if(!islogin) {
-            <div class="start">
-                <button  routerLink="login" class="btn">Login</button>
-                <button routerLink="register" class="btn">Register</button>
-            </div>
-        }
+        
         </div>
     </div>
 </nav>

@@ -1,0 +1,76 @@
+$primary-color:#195A00;
+$second-color:#ffffff;
+.btn{
+    background-color: $primary-color;
+    color: $second-color;
+    margin-right: 0.5em;
+    padding: 0.3em 1em;
+    font-size: small;
+    border-radius: 0;
+    text-transform: capitalize;
+}
+.foods{
+    h4{
+        color: #43121D;
+    }
+    p{font-size: small;padding:0 4rem;}
+    .menu{
+        .swiper-horizontal{ .swiper-button-next,.swiper-button-prev{
+            color: $primary-color;
+            }
+            .swiper-button-next{right:-.5rem ;}.swiper-button-prev{left: -.5rem;}
+        }
+        .col-4{padding: 0;}
+        .card{
+            border-radius:  30px 5px 30px 0;
+            overflow: hidden;
+            margin: .5rem;     
+            border-left: 0;
+            box-shadow:5px 5px 5px rgba(0, 0, 0, 0.15);
+            .card-img-top{border-radius: 5px;height: 13rem;}
+            .card-body{
+                p,h5{padding: 0;margin: 0;}
+                .card-text{font-size: x-small;}
+                .price{
+                    color: $primary-color;
+                    padding:5px 0;
+                    font-size: large;
+                }
+                .btn{border-radius: 2px;}
+            }
+        }
+    }
+}
+/* Extra small devices (phones) */
+@media (max-width: 575px) {
+   .py-3,.p-5{padding: 2px!important;}
+.foods{
+    .menu{
+        .card{
+            .card-img-top{height: 8rem;}
+        }
+    }
+}
+}
+
+/* Small devices (tablet) */
+@media (min-width: 576px) and (max-width: 767px) {
+    .foods{
+    .menu{
+        .card{
+            .card-img-top{height: 9rem;}
+        }
+    }
+}
+}
+
+/* Medium devices (tablet landscape) */
+@media (min-width: 768px) and (max-width: 991px) {
+    .foods{
+    .menu{
+        .card{
+            .card-img-top{height: 10rem;}
+        }
+    }
+}
+}

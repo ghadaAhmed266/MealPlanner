@@ -1,18 +1,35 @@
-<div class="about my-5">
-    <div class="container">
-        <div class="d-flex flex-column flex-md-row align-items-center justify-content-center">
-             <div class="image">
-                <img src="assets/home2.png" alt="" class="img-fluid">
-            </div>
-            
-            <div class="content text-center text-md-start p-3">
-                <h4>
-                    We pride ourselves on <br>making real food from the<br>best ingredients
-                </h4>
-                <p>Lorem ipsum dolor sit amet consectetur. Urna eu amet laoreet nisl. Amet pellentesque quam lobortis metus et. Consequat at mauris lacus sed blandit purus proin. Nunc lacus vivamus tortor bibendum est habitant ut mattis vivamus.</p>
-                <button class="btn">Learn More</button>
-            </div>
-           
+<div class="foods my-4">
+    <div class="container text-center">
+        <div class="px-5 py-3">
+        <h4>Explore Our Foods</h4>
+        <p>Lorem ipsum dolor sit amet consectetur. Urna eu amet laoreet nisl. Amet pellentesque quam lobortis metus et. Consequat at mauris lacus sed blandit purus proin. Nunc lacus vivamus tortor bibendum est habitant ut mattis vivamus.</p>
+        </div>
+
+        <div class="menu">
+            <div class="swiper myProducts p-2">
+                <div class="swiper-wrapper">
+                    @for (itemCard of menuItems|async;track itemCard.id) { 
+                        <div class="px-md-2 px-sm-1 px-0 swiper-slide">
+                            <div class="card m-5 m-sm-0">
+                                <img [src]="itemCard.img" class="card-img-top" alt="">
+                                <div class="card-body text-start">
+                                    <h5 class="card-title">{{itemCard.name}}</h5>
+                                    <p class="card-text">{{itemCard.time}}</p>
+                                    <p class="price">${{itemCard.price}}</p>
+                                    <button class="btn" (click)="addToCart(itemCard)">add to cart</button>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    @empty {
+                    <div>There are no items.</div>
+                    }
+                </div>
+
+                <!-- Arrows -->
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+            </div> 
         </div>
     </div>
 </div>

@@ -10,13 +10,14 @@ import { Cart } from './cart/cart';
 import { Faq } from './faq/faq';
 
 export const routes: Routes = [
-      {path:'',redirectTo:'home',pathMatch:'full'},
-    {path:'home',component:Home,canActivate: [authGuard]},
+    {path:'',redirectTo:'home',pathMatch:'full'},
+    {path:'home',component:Home},
     {path:'register',component:Register},    
     {path:'login',component:Login},
-    {path:'contact',component:Contact,canActivate: [authGuard]},
-    {path:'menu',component:Menu,canActivate: [authGuard]},
-    {path:'cart',component:Cart,canActivate: [authGuard]},
+    {path:'contact',component:Contact},
+    {path:'menu',component:Menu},
+    {path:'cart',component:Cart},
     {path:'faq',component:Faq},
+    {path:'product',component:Faq},
     {path:'**',component:NotFound}
 ];
