@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators ,ReactiveFormsModule} from '@angular/forms';
 import { CommonModule } from "@angular/common";
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import {UserData} from '../user-data';
 import { AuthService } from '../authService';
 import { CartService } from '../cart-service';
@@ -9,7 +9,7 @@ import { CartService } from '../cart-service';
 
 @Component({
   selector: 'app-login',
-  imports: [ReactiveFormsModule,CommonModule],
+  imports: [ReactiveFormsModule, CommonModule, RouterLink],
   templateUrl: './login.html',
   styleUrl: './login.scss'
 })

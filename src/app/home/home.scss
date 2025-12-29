@@ -142,55 +142,25 @@ $second-color:#ffffff;
 .testimonial .carousel .carousel-indicators{
     margin-bottom: -1.5rem;
 }
-.foods{
-    .menu{
-        .card{
-            .card-img-top{height: 8rem;}
-        }
-    }
-}
+
 }
 
 /* Small devices (tablet) */
 @media (min-width: 576px) and (max-width: 767px) {
-    .foods{
-    .menu{
-        .card{
-            .card-img-top{height: 9rem;}
-        }
-    }
-}
+   
 }
 
 /* Medium devices (tablet landscape) */
 @media (min-width: 768px) and (max-width: 991px) {
-    .foods{
-    .menu{
-        .card{
-            .card-img-top{height: 10rem;}
-        }
-    }
-}
+   
 }
 
 /* Large devices (laptop) */
 @media (min-width: 992px) and (max-width: 1199px) {
-    .foods{
-    .menu{
-        .card{
-            .card-img-top{height: 12rem;}
-        }
-    }
-}
+    
 }
 
 /* Extra large devices (large desktop) */
 @media (min-width: 1200px) {
-    .foods{
-    .menu{
-        .card{
-            .card-img-top{height: 14rem;}
-        }
-    }
-}
+  
 }
